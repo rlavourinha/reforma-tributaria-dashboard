@@ -106,7 +106,7 @@ footer a{font-size:11.5px}
     <span>EC 132/2023 · LC 214/2025 · LC 227/2026</span>
     <span>·</span>
     <span><b>IVA dual</b> — IBS + CBS + Imposto Seletivo</span>
-    <span class="ver">v1.0 · 15/06/2026</span>
+    <span class="ver">v1.1 · 15/06/2026</span>
   </div>
 
   <div class="tabs">
@@ -114,6 +114,7 @@ footer a{font-size:11.5px}
     <button class="tab" data-p="timeline">Transição 2026–2033</button>
     <button class="tab" data-p="regimes">Alíquotas, cashback &amp; regimes</button>
     <button class="tab" data-p="ibov">Exposição Ibovespa</button>
+    <button class="tab" data-p="modelo">Modelo Localiza</button>
   </div>
 
   <!-- ============ VISÃO GERAL ============ -->
@@ -293,6 +294,77 @@ footer a{font-size:11.5px}
     </div>
   </section>
 
+  <!-- ============ MODELO LOCALIZA ============ -->
+  <section class="panel" id="modelo">
+    <div class="card">
+      <div class="card-h"><h2>Mini-modelo Localiza (RENT3) — um carro, ciclo anual</h2><span class="meta">ilustrativo · não verificado</span></div>
+      <div class="card-b">
+        <div class="callout"><b>Premissa central (ROIC-spread):</b> a Localiza opera com meta de spread (ROIC − custo de capital), logo ROIC ≈ constante e <b>NOPAT = ROIC × capital investido</b>. A reforma transforma o ICMS/IPI hoje preso no ativo em <b>crédito</b> → o capital investido por carro cai → o lucro exigido por carro cai na mesma proporção → <b>é repassado a preço</b>, expandindo o mercado endereçável.</div>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--faint)"></i>Hoje (≈0% no consumo)</span>
+        <span><i style="background:var(--buy)"></i>B2B / GTF — cliente credita</span>
+        <span><i style="background:var(--sell)"></i>B2C / RAC — não credita</span>
+      </div>
+      <div class="chart-box">
+        <svg viewBox="0 0 660 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Preço all-in: hoje x B2B x B2C">
+          <!-- referência: preço de hoje = 31 -->
+          <line x1="60" y1="64" x2="600" y2="64" stroke="var(--gold)" stroke-width="1" stroke-dasharray="4 3"/>
+          <text class="svg-axis" x="600" y="60" text-anchor="end" fill="var(--gold)">linha de hoje · 31,0</text>
+          <line class="svg-zero" x1="60" y1="250" x2="600" y2="250"/>
+          <!-- barras -->
+          <rect x="90"  y="64"   width="90" height="186"   fill="var(--faint)" opacity="0.85"/>
+          <rect x="230" y="87.4" width="90" height="162.6" fill="var(--buy)"/>
+          <rect x="370" y="44.2" width="90" height="205.8" fill="var(--sell)"/>
+          <rect x="510" y="41.8" width="90" height="208.2" fill="var(--sell)" opacity="0.7"/>
+          <!-- valores -->
+          <text class="svg-tkr" x="135" y="56"   text-anchor="middle">31,0</text>
+          <text class="svg-tkr" x="275" y="79"   text-anchor="middle" fill="var(--buy)">27,1</text>
+          <text class="svg-tkr" x="415" y="36"   text-anchor="middle" fill="var(--sell)">34,3</text>
+          <text class="svg-tkr" x="555" y="34"   text-anchor="middle" fill="var(--sell)">34,7</text>
+          <!-- variação -->
+          <text class="svg-val" x="275" y="250" dy="-6" text-anchor="middle" fill="var(--buy)">−12,6%</text>
+          <text class="svg-val" x="415" y="250" dy="-6" text-anchor="middle" fill="#fff">+10,6%</text>
+          <text class="svg-val" x="555" y="250" dy="-6" text-anchor="middle" fill="#fff">+11,9%</text>
+          <!-- rótulos -->
+          <text class="svg-axis" x="135" y="268" text-anchor="middle">Hoje</text>
+          <text class="svg-axis" x="275" y="268" text-anchor="middle">B2B reforma</text>
+          <text class="svg-axis" x="415" y="268" text-anchor="middle">B2C @26,5%</text>
+          <text class="svg-axis" x="555" y="268" text-anchor="middle">B2C @28%</text>
+          <text class="svg-axis" x="330" y="288" text-anchor="middle">preço all-in ao cliente (R$/ano, base 100)</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>A conta, linha a linha</h2><span class="meta">ROIC-alvo 16% fixo · capital investido −15%</span></div>
+      <table>
+        <thead><tr><th>Item (R$/ano, base 100)</th><th>Hoje</th><th>Reforma</th></tr></thead>
+        <tbody>
+          <tr><td>Capital investido / carro</td><td class="mono">100,0</td><td class="mono">85,0 (−15%)</td></tr>
+          <tr><td>Depreciação econômica</td><td class="mono">10,0</td><td class="mono">8,5</td></tr>
+          <tr><td>Opex</td><td class="mono">5,0</td><td class="mono">5,0</td></tr>
+          <tr><td>Encargo de capital (ROIC 16%)</td><td class="mono">16,0</td><td class="mono">13,6</td></tr>
+          <tr><td><b>Preço pré-imposto</b></td><td class="mono">31,0</td><td class="mono">27,1 (−12,6%)</td></tr>
+          <tr><td>IVA sobre a locação</td><td class="mono">~0%</td><td class="mono">26,5% / 28%</td></tr>
+          <tr><td><b>All-in B2B</b> (GTF — credita)</td><td class="mono">31,0</td><td><span class="chip fav">27,1 · −12,6%</span></td></tr>
+          <tr><td><b>All-in B2C</b> (RAC — não credita)</td><td class="mono">31,0</td><td><span class="chip att">34,3 / 34,7 · +10,6% / +11,9%</span></td></tr>
+          <tr><td>Carros por real investido</td><td class="mono">1,00×</td><td class="mono">1,18×</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Leitura</h2><span class="meta">o que o modelo revela</span></div>
+      <div class="card-b">
+        <p><b style="color:var(--buy)">B2B/GTF — o flywheel dispara.</b> Preço pré-imposto cai −12,6% e o cliente credita o IVA → preço efetivo cai os mesmos −12,6%. Com elasticidade ~1, ≈ +13% de mercado só de preço — antes dos +18% de frota por capital.</p>
+        <p><b style="color:var(--sell)">B2C/RAC — ainda sobe, mas pouco.</b> O corte de preço pré-imposto amortece, mas não vence um IVA de ~28% → consumidor final paga ~+11%. Cushion real, não offset completo.</p>
+        <p><b style="color:var(--gold)">A assimetria é a tese.</b> A reforma empurra a economia da Localiza na direção que ela já segue (mix → GTF/B2B): onde o capital cai e o cliente credita, vira preço menor → mercado maior → escala → custo menor.</p>
+        <p class="note"><b>Sensibilidade:</b> se o tributo embutido liberado for 20% (não 15%), o B2C sobe só ~+6%; se for 10%, sobe ~+16%. Quanto mais imposto preso a reforma destrava, mais o flywheel come o aumento ao consumidor. Variáveis abertas: alíquota de referência final, regime de margem dos Seminovos, mix B2B×B2C.</p>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <div>Reforma Tributária do Consumo · estudo explicativo · pesquisa multifonte com verificação adversarial</div>
     <div class="src">
@@ -303,7 +375,7 @@ footer a{font-size:11.5px}
       <a href="https://www12.senado.leg.br/noticias/materias/2026/01/02/ano-de-2026-marca-implementacao-da-reforma-tributaria">Senado</a> ·
       <a href="https://www.camara.leg.br/noticias/1237089-reforma-tributaria-comeca-fase-de-transicao-com-testes-de-novos-impostos-em-2026/">Câmara</a>
     </div>
-    <div style="margin-top:8px">v1.0 · gerado 15/06/2026 · sem dependências externas (SVG inline) · números estimados marcados como tal</div>
+    <div style="margin-top:8px">v1.1 · gerado 15/06/2026 · sem dependências externas (SVG inline) · números estimados e modelo ilustrativo marcados como tal</div>
   </footer>
 
 </div>
