@@ -106,7 +106,7 @@ footer a{font-size:11.5px}
     <span>EC 132/2023 · LC 214/2025 · LC 227/2026</span>
     <span>·</span>
     <span><b>IVA dual</b> — IBS + CBS + Imposto Seletivo</span>
-    <span class="ver">v1.1 · 15/06/2026</span>
+    <span class="ver">v1.2 · 15/06/2026</span>
   </div>
 
   <div class="tabs">
@@ -363,6 +363,43 @@ footer a{font-size:11.5px}
         <p class="note"><b>Sensibilidade:</b> se o tributo embutido liberado for 20% (não 15%), o B2C sobe só ~+6%; se for 10%, sobe ~+16%. Quanto mais imposto preso a reforma destrava, mais o flywheel come o aumento ao consumidor. Variáveis abertas: alíquota de referência final, regime de margem dos Seminovos, mix B2B×B2C.</p>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Efeito ponderado pelo mix (EBITDA 2024)</h2><span class="meta">RAC ~49% · GTF ~47% · Seminovos ~4%</span></div>
+      <div class="chart-box">
+        <svg viewBox="0 0 660 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pool de lucro por direção do efeito">
+          <!-- barra empilhada 100% -->
+          <rect x="60"    y="40" width="361.8" height="50" fill="var(--buy)"/>
+          <rect x="421.8" y="40" width="156.6" height="50" fill="var(--sell)"/>
+          <rect x="578.4" y="40" width="21.6"  height="50" fill="var(--faint)"/>
+          <text class="svg-tkr" x="240.9" y="71" text-anchor="middle" fill="#0B1117">~67% · flywheel (−12,6%)</text>
+          <text class="svg-tkr" x="500"   y="71" text-anchor="middle" fill="#0B1117">~29% · +11%</text>
+          <text class="svg-axis" x="60"  y="112">GTF + RAC-PJ (credita)</text>
+          <text class="svg-axis" x="500" y="112" text-anchor="middle">RAC-PF</text>
+          <text class="svg-axis" x="600" y="128" text-anchor="end">Seminovos ~4% (neutro)</text>
+        </svg>
+      </div>
+      <table>
+        <thead><tr><th>Bloco</th><th>% EBITDA</th><th>Efeito</th><th>Direção</th></tr></thead>
+        <tbody>
+          <tr><td>GTF (PJ, credita)</td><td class="mono">~47%</td><td class="mono">−12,6%</td><td><span class="chip fav">flywheel</span></td></tr>
+          <tr><td>RAC-PJ (credita)</td><td class="mono">~20%</td><td class="mono">−12,6%</td><td><span class="chip fav">flywheel</span></td></tr>
+          <tr><td>RAC-PF (não credita)</td><td class="mono">~29%</td><td class="mono">~+11%</td><td><span class="chip att">leve alta</span></td></tr>
+          <tr><td>Seminovos (~0% margem)</td><td class="mono">~4%</td><td class="mono">neutro</td><td><span class="chip neu">recicla frota</span></td></tr>
+        </tbody>
+      </table>
+      <div class="card-b"><p class="note">~67% do pool de lucro fica no lado em que a reforma <b>reduz</b> o preço efetivo; ~29% no balcão PF que sobe — e amortecido pelos substitutos (comprar carro, Uber) também tributados. RAC-PF é aproximação (60% de RAC); ajustável com o split real.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>O paradoxo dos "dois preços"</h2><span class="meta">PF × PJ · lei do preço único</span></div>
+      <div class="card-b">
+        <div class="callout"><b>Não há dois preços — há um preço pré-imposto + IVA por cima.</b> A Localiza posta um valor único; a nota soma o IVA igual para todos. A diferença está no comprador: a PJ <b>recupera</b> o crédito, a PF <b>não</b>.</div>
+        <p>Isso <b>não viola a lei do preço único</b>: o produto não é idêntico depois de anexar o atributo fiscal — a compra da PJ vem com um <b>crédito recuperável embutido</b> (cupom resgatável só por CNPJ na cadeia tributada). Bundles diferentes → custo líquido diferente, com preço único. Como no <b>atacado (CNPJ) vs. varejo</b> ou <b>duty-free vs. duty-paid</b>.</p>
+        <p>É <b>desenho, não defeito</b>: o IVA tributa o consumo final e desonera o insumo empresarial. A cunha B2B/B2C existe em todo bem da economia — e já existia (crédito de PIS-Cofins da PJ vs. PF); a reforma só a torna maior e mais limpa.</p>
+        <p><b style="color:var(--gold)">A correção que importa:</b> o +11% do B2C engana. O contrafactual certo é aluguel <b>vs. os substitutos da PF</b> — comprar carro (IVA não recuperável na compra) e Uber também passam a ser tributados. Como todo consumo final da PF é taxado, a competitividade <b>relativa</b> do aluguel quase não muda — e pode melhorar, por evitar imobilizar capital num ativo integralmente tributado.</p>
+      </div>
+    </div>
   </section>
 
   <footer>
@@ -375,7 +412,7 @@ footer a{font-size:11.5px}
       <a href="https://www12.senado.leg.br/noticias/materias/2026/01/02/ano-de-2026-marca-implementacao-da-reforma-tributaria">Senado</a> ·
       <a href="https://www.camara.leg.br/noticias/1237089-reforma-tributaria-comeca-fase-de-transicao-com-testes-de-novos-impostos-em-2026/">Câmara</a>
     </div>
-    <div style="margin-top:8px">v1.1 · gerado 15/06/2026 · sem dependências externas (SVG inline) · números estimados e modelo ilustrativo marcados como tal</div>
+    <div style="margin-top:8px">v1.2 · gerado 15/06/2026 · sem dependências externas (SVG inline) · números estimados e modelo ilustrativo marcados como tal</div>
   </footer>
 
 </div>
