@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reforma Tributária do Consumo · Brasil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,560;9..144,620&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B1117; --panel:#121A22; --panel2:#18232E; --line:#243240;
+  --paper:#E7E3D8; --muted:#8596A2; --faint:#5C6B76;
+  --buy:#4FB286; --sell:#D86A4A; --gold:#D4A53A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--paper);
+  font-family:'Inter',system-ui,sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:38px 26px 60px}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--gold)}
+
+.kicker{font:600 11px/1 'Inter',sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+h1{font-family:'Fraunces',serif;font-weight:560;font-size:clamp(30px,5vw,50px);line-height:1.02;letter-spacing:-.01em;margin:0 0 12px}
+h1 em{font-style:italic;color:var(--gold)}
+.sub{color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center}
+.sub b{color:var(--paper);font-weight:500}
+.ver{font:600 10px/1 'IBM Plex Mono',monospace;letter-spacing:.14em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--gold);border-radius:3px;color:var(--gold)}
+
+.tabs{display:flex;gap:4px;margin:26px 0 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{appearance:none;background:none;border:0;cursor:pointer;
+  font:600 13px 'Inter',sans-serif;color:var(--muted);padding:13px 18px;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s}
+.tab:hover{color:var(--paper)}
+.tab.active{color:var(--paper);border-bottom-color:var(--gold)}
+.panel{display:none} .panel.active{display:block}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0 0 24px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.kpi{padding:18px 20px;border-right:1px solid var(--line)}
+.kpi:last-child{border-right:0}
+.kpi .lbl{font:600 10px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.kpi .val{font:600 22px 'IBM Plex Mono',monospace}
+.kpi .val.serif{font-family:'Fraunces',serif;font-weight:560;font-size:26px}
+.kpi .val.gold{color:var(--gold)}
+.kpi .foot{font-size:12px;color:var(--muted);margin-top:7px}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:22px}
+.card-h{display:flex;justify-content:space-between;align-items:baseline;padding:16px 20px;border-bottom:1px solid var(--line)}
+.card-h h2{font-family:'Fraunces',serif;font-weight:560;font-size:18px;margin:0}
+.card-h .meta{font:500 11px 'IBM Plex Mono',monospace;color:var(--faint);letter-spacing:.04em}
+.card-b{padding:18px 20px}
+.card-b p{margin:0 0 12px;font-size:14px;color:var(--paper)}
+.card-b p:last-child{margin-bottom:0}
+.card-b .note{font-size:12.5px;color:var(--muted)}
+
+.chart-box{padding:8px 12px 14px}
+.chart-box svg{width:100%;height:auto;display:block}
+.svg-grid{stroke:rgba(36,50,64,.7);stroke-width:1}
+.svg-zero{stroke:var(--faint);stroke-width:1}
+.svg-axis{fill:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10px}
+.svg-lbl{fill:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:11px}
+.svg-tkr{fill:var(--paper);font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600}
+.legend{display:flex;gap:18px;padding:4px 20px 4px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:0;margin-right:6px;vertical-align:3px}
+
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:11px 20px;font-size:13px;border-bottom:1px solid rgba(36,50,64,.5)}
+th{font:600 10px 'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+td .yr{font:600 14px 'IBM Plex Mono',monospace;color:var(--gold)}
+td.mono{font-family:'IBM Plex Mono',monospace;color:var(--paper)}
+tr:last-child td{border-bottom:0}
+
+.chip{font:600 9.5px 'Inter',sans-serif;letter-spacing:.07em;text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.chip.fav{color:var(--buy);background:rgba(79,178,134,.13)}
+.chip.neu{color:var(--gold);background:rgba(212,165,58,.13)}
+.chip.att{color:var(--sell);background:rgba(216,106,74,.13)}
+.tk{font:600 11px 'IBM Plex Mono',monospace;color:var(--muted)}
+
+.flow{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;padding:20px}
+.flow .col{display:flex;flex-direction:column;gap:8px}
+.flow .box{border:1px solid var(--line);border-radius:6px;padding:10px 13px;font:600 13px 'IBM Plex Mono',monospace;background:var(--panel2)}
+.flow .box small{display:block;font:500 10px 'Inter',sans-serif;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+.flow .arrow{font-size:26px;color:var(--gold);text-align:center}
+.flow .box.new{border-color:rgba(212,165,58,.45)}
+.flow .box.new b{color:var(--gold)}
+
+.callout{border-left:2px solid var(--gold);background:var(--panel2);padding:12px 16px;border-radius:0 6px 6px 0;font-size:13px;color:var(--paper);margin:0 0 14px}
+.callout b{color:var(--gold)}
+
+footer{margin-top:30px;color:var(--faint);font-size:11.5px;font-family:'IBM Plex Mono',monospace;border-top:1px solid var(--line);padding-top:18px}
+footer .src{margin-top:10px;line-height:1.9}
+footer a{font-size:11.5px}
+
+@media (max-width:880px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpi:nth-child(2){border-right:0}
+  .flow{grid-template-columns:1fr}
+  .flow .arrow{transform:rotate(90deg)}
+}
+</style></head>
+<body>
+<div class="wrap">
+
+  <div class="kicker">Estudo · Dados Abertos &amp; Fontes Oficiais</div>
+  <h1>Reforma Tributária <em>do Consumo</em></h1>
+  <div class="sub">
+    <span>EC 132/2023 · LC 214/2025 · LC 227/2026</span>
+    <span>·</span>
+    <span><b>IVA dual</b> — IBS + CBS + Imposto Seletivo</span>
+    <span class="ver">v1.0 · 15/06/2026</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-p="overview">Visão geral</button>
+    <button class="tab" data-p="timeline">Transição 2026–2033</button>
+    <button class="tab" data-p="regimes">Alíquotas, cashback &amp; regimes</button>
+    <button class="tab" data-p="ibov">Exposição Ibovespa</button>
+  </div>
+
+  <!-- ============ VISÃO GERAL ============ -->
+  <section class="panel active" id="overview">
+    <div class="kpis">
+      <div class="kpi"><div class="lbl">Tributos substituídos</div><div class="val serif gold">5 → 3</div><div class="foot">PIS·Cofins·IPI·ICMS·ISS → IBS·CBS·IS</div></div>
+      <div class="kpi"><div class="lbl">Modelo</div><div class="val serif">IVA dual</div><div class="foot">federal + subnacional, no destino</div></div>
+      <div class="kpi"><div class="lbl">Transição</div><div class="val">2026–2033</div><div class="foot">8 anos, em etapas</div></div>
+      <div class="kpi"><div class="lbl">Status (jun/2026)</div><div class="val gold">Ano-teste</div><div class="foot">destaque informativo, sem cobrança</div></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>O modelo: IVA dual + Imposto Seletivo</h2><span class="meta">verificado 3-0</span></div>
+      <div class="flow">
+        <div class="col">
+          <div class="box">PIS <small>federal</small></div>
+          <div class="box">Cofins <small>federal</small></div>
+          <div class="box">IPI <small>federal</small></div>
+          <div class="box">ICMS <small>estadual</small></div>
+          <div class="box">ISS <small>municipal</small></div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="col">
+          <div class="box new"><b>CBS</b> <small>federal · absorve PIS, Cofins e IPI</small></div>
+          <div class="box new"><b>IBS</b> <small>estadual + municipal · sucede ICMS e ISS</small></div>
+          <div class="box new"><b>Imposto Seletivo</b> <small>federal · "imposto do pecado"</small></div>
+        </div>
+      </div>
+      <div class="card-b">
+        <div class="callout"><b>Nuance:</b> o IPI não é literalmente extinto em 2027 — é <b>zerado</b>, exceto para produtos da <b>Zona Franca de Manaus</b> (mantido como tributo residual/regulatório). Sua extinção formal só ocorre em 2033.</div>
+        <p class="note">O <b>Imposto Seletivo</b> incide uma única vez sobre bens e serviços prejudiciais à saúde e ao meio ambiente (cigarro, bebidas alcoólicas e açucaradas, entre outros), assumindo a função extrafiscal que era do IPI.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Princípios estruturantes</h2><span class="meta">EC 132 · LC 214 art. 108</span></div>
+      <div class="card-b">
+        <p><b style="color:var(--gold)">Princípio do destino.</b> O imposto fica com o ente onde está o <b>consumidor</b>, não onde está o produtor — encerra a guerra fiscal entre estados.</p>
+        <p><b style="color:var(--gold)">Não cumulatividade plena.</b> Crédito amplo e <b>imediato</b>, inclusive sobre ativo fixo (máquinas, equipamentos) e bens de uso e consumo — ruptura com o regime antigo de PIS/Cofins, que creditava ativo em 1/48 ao mês.</p>
+        <p><b style="color:var(--gold)">Neutralidade e transparência.</b> Alíquota destacada na nota; o tributo não deve distorcer decisões de consumo nem de organização da atividade econômica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section class="panel" id="timeline">
+    <div class="card">
+      <div class="card-h"><h2>Substituição gradual ICMS/ISS → IBS</h2><span class="meta">% da alíquota vigente · 2026–2033</span></div>
+      <div class="legend">
+        <span><i style="background:var(--sell)"></i>ICMS / ISS (saindo)</span>
+        <span><i style="background:var(--buy)"></i>IBS (entrando)</span>
+        <span><i style="background:var(--gold)"></i>CBS federal (degrau em 2027)</span>
+      </div>
+      <div class="chart-box">
+        <svg viewBox="0 0 660 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Curva de transição da alíquota 2026 a 2033">
+          <!-- grid horizontal 0/25/50/75/100% -->
+          <line class="svg-grid" x1="60" y1="30"  x2="600" y2="30"/>
+          <line class="svg-grid" x1="60" y1="82.5" x2="600" y2="82.5"/>
+          <line class="svg-grid" x1="60" y1="135" x2="600" y2="135"/>
+          <line class="svg-grid" x1="60" y1="187.5" x2="600" y2="187.5"/>
+          <line class="svg-zero" x1="60" y1="240" x2="600" y2="240"/>
+          <text class="svg-axis" x="52" y="33"  text-anchor="end">100%</text>
+          <text class="svg-axis" x="52" y="86"  text-anchor="end">75%</text>
+          <text class="svg-axis" x="52" y="138" text-anchor="end">50%</text>
+          <text class="svg-axis" x="52" y="191" text-anchor="end">25%</text>
+          <text class="svg-axis" x="52" y="243" text-anchor="end">0%</text>
+          <!-- eixo X anos -->
+          <text class="svg-axis" x="60"  y="258" text-anchor="middle">2026</text>
+          <text class="svg-axis" x="137" y="258" text-anchor="middle">2027</text>
+          <text class="svg-axis" x="214" y="258" text-anchor="middle">2028</text>
+          <text class="svg-axis" x="291" y="258" text-anchor="middle">2029</text>
+          <text class="svg-axis" x="369" y="258" text-anchor="middle">2030</text>
+          <text class="svg-axis" x="446" y="258" text-anchor="middle">2031</text>
+          <text class="svg-axis" x="523" y="258" text-anchor="middle">2032</text>
+          <text class="svg-axis" x="600" y="258" text-anchor="middle">2033</text>
+          <!-- CBS degrau (0 -> 100 em 2027) -->
+          <polyline fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-dasharray="4 3"
+            points="60,240 137,240 137,30 600,30"/>
+          <!-- ICMS/ISS saindo: 100,100,100,90,80,70,60,0 -->
+          <polyline fill="none" stroke="var(--sell)" stroke-width="2.4"
+            points="60,30 137,30 214,30 291,51 369,72 446,93 523,114 600,240"/>
+          <!-- IBS entrando: 0,0,0,10,20,30,40,100 -->
+          <polyline fill="none" stroke="var(--buy)" stroke-width="2.4"
+            points="60,240 137,240 214,240 291,219 369,198 446,177 523,156 600,30"/>
+          <!-- marcadores -->
+          <circle cx="60" cy="240" r="3" fill="var(--buy)"/>
+          <circle cx="137" cy="30" r="3" fill="var(--gold)"/>
+          <circle cx="600" cy="30" r="3.5" fill="var(--buy)"/>
+          <circle cx="600" cy="240" r="3.5" fill="var(--sell)"/>
+        </svg>
+      </div>
+      <div class="card-b"><p class="note">O degrau de 2032→2033 é real: os 40% restantes de ICMS/ISS são extintos de uma vez e o IBS passa a vigorar integralmente. A CBS substitui PIS/Cofins já em 2027, em degrau único.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Calendário por etapa</h2><span class="meta">verificado 3-0</span></div>
+      <table>
+        <thead><tr><th>Ano</th><th>Marco</th></tr></thead>
+        <tbody>
+          <tr><td><span class="yr">2026</span></td><td><b>Ano-teste.</b> CBS destacada a <span class="tk">0,9%</span> e IBS a <span class="tk">0,1%</span> nas notas — <b>apenas informativo, sem cobrança</b> (desde que cumpridas as obrigações acessórias).</td></tr>
+          <tr><td><span class="yr">2027</span></td><td><b>CBS plena.</b> Extinção de PIS/Cofins; IPI zerado (exceto ZFM); criação do <b>Imposto Seletivo</b>; início do cashback da parcela CBS.</td></tr>
+          <tr><td><span class="yr">2028</span></td><td>Continuidade da CBS; preparação para a entrada do IBS.</td></tr>
+          <tr><td><span class="yr">2029–2032</span></td><td>IBS sobe enquanto <b>ICMS/ISS caem</b> em passos de <span class="tk">10% · 20% · 30% · 40%</span>; cashback da parcela IBS a partir de 2029.</td></tr>
+          <tr><td><span class="yr">2033</span></td><td><b>Regime final.</b> ICMS, ISS e IPI extintos; IVA dual plenamente em vigor.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ ALÍQUOTAS / CASHBACK / REGIMES ============ -->
+  <section class="panel" id="regimes">
+    <div class="card">
+      <div class="card-h"><h2>Alíquota: o que é lei × o que é estimativa</h2><span class="meta">distinção essencial</span></div>
+      <div class="card-b">
+        <div class="callout"><b>A alíquota de referência não está fixada na lei.</b> Será definida por <b>resolução do Senado</b>, calibrada para repor a arrecadação dos tributos extintos (CBS a partir de 2027; IBS a partir de 2029).</div>
+        <p><b>Estimativas oficiais</b> (projeções, não fato consumado): a Fazenda estimou inicialmente <span class="tk">25,45%–27%</span>; o relator da regulamentação projetou <span class="tk">≈28,55%</span> após as exceções incluídas no Congresso — o que colocaria o Brasil entre os <b>maiores IVAs do mundo</b> (acima da Hungria, 27%).</p>
+        <p class="note">A verificação adversarial <b>refutou</b> apresentar qualquer faixa específica como "a alíquota". Trate como projeção sujeita a calibragem.</p>
+        <p><b style="color:var(--gold)">Trava de carga.</b> A EC 132 prevê teto referenciado na média histórica da arrecadação sobre o PIB; se a carga subir além do limite, as alíquotas de referência são reduzidas.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Cashback — devolução a famílias de baixa renda</h2><span class="meta">CadÚnico · ≤ ½ salário mínimo per capita</span></div>
+      <table>
+        <thead><tr><th>Consumo</th><th>Devolução reportada (pós-sanção)</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Botijão de gás (13 kg)</td><td><span class="chip fav">100% da CBS</span></td></tr>
+          <tr><td class="mono">Energia, água, esgoto, gás canalizado</td><td><span class="chip neu">50% da CBS</span></td></tr>
+          <tr><td class="mono">Demais compras (ex.: supermercado)</td><td><span class="chip neu">20% de CBS + 20% de IBS</span></td></tr>
+        </tbody>
+      </table>
+      <div class="card-b"><p class="note">A LC 214 fixa pisos; estados e municípios podem ampliar por lei própria. Vigência: 2027 (parcela CBS) e 2029 (parcela IBS). <b>Cesta básica nacional: alíquota zero.</b></p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Regimes diferenciados e específicos</h2><span class="meta">LC 214/2025</span></div>
+      <table>
+        <thead><tr><th>Tratamento</th><th>Setores</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip fav">Redução 60%</span></td><td>Saúde e dispositivos médicos · educação · medicamentos · transporte coletivo · alimentos · insumos agropecuários · produções artísticas/culturais</td></tr>
+          <tr><td><span class="chip fav">Redução 30%</span></td><td>Profissionais liberais regulamentados (advogados, médicos, engenheiros etc.)</td></tr>
+          <tr><td><span class="chip neu">Alíquota zero</span></td><td>Cesta básica nacional de alimentos</td></tr>
+          <tr><td><span class="chip att">Regime específico</span></td><td>Combustíveis (monofásico) · serviços financeiros · planos de saúde · seguros · operações imobiliárias · cooperativas · bares/restaurantes · hotelaria e turismo</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ EXPOSIÇÃO IBOVESPA ============ -->
+  <section class="panel" id="ibov">
+    <div class="card">
+      <div class="card-h"><h2>Exposição setorial — carteira Ibovespa</h2><span class="meta">leitura qualitativa · não verificada</span></div>
+      <div class="card-b">
+        <div class="callout">Mapeamento <b>qualitativo</b> dos 76 emissores da watchlist do projeto (carteira mai–ago/2026) à direção provável do efeito. Não é recomendação nem número auditado — a pesquisa não encontrou estudos setoriais quantificados que passassem na verificação.</div>
+      </div>
+      <table>
+        <thead><tr><th>Setor</th><th>Direção</th><th>Por quê</th><th>Papéis (exemplos)</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Indústria &amp; exportadoras</td><td><span class="chip fav">Favorável</span></td><td>Crédito pleno sobre ativo fixo; exportação desonerada; fim da cumulatividade</td><td><span class="tk">VALE3 SUZB3 GGBR4 CSNA3 USIM5 KLBN11 WEGE3 EMBJ3</span></td></tr>
+          <tr><td class="mono">Varejo &amp; consumo</td><td><span class="chip fav">Favorável</span></td><td>Crédito amplo; cashback e cesta básica sustentam a baixa renda; preço mais transparente</td><td><span class="tk">MGLU3 LREN3 ASAI3 ABEV3 NATU3 VIVA3 AZZA3</span></td></tr>
+          <tr><td class="mono">Saúde &amp; educação</td><td><span class="chip neu">Misto</span></td><td>Redução de 60%, mas base ampliada e fim de benefícios setoriais antigos</td><td><span class="tk">RDOR3 HAPV3 FLRY3 RADL3 COGN3 YDUQ3</span></td></tr>
+          <tr><td class="mono">Energia &amp; saneamento</td><td><span class="chip neu">Misto</span></td><td>Regime específico; cashback obrigatório em energia/água repassa parte ao consumidor</td><td><span class="tk">CMIG4 CPLE3 EGIE3 EQTL3 ENEV3 TAEE11 SBSP3 CSMG3</span></td></tr>
+          <tr><td class="mono">Construção &amp; imobiliário</td><td><span class="chip neu">Misto</span></td><td>Regime específico para operações imobiliárias com redutores próprios</td><td><span class="tk">CYRE3 CURY3 DIRR3 MRVE3 MULT3 IGTI11 ALOS3</span></td></tr>
+          <tr><td class="mono">Combustíveis</td><td><span class="chip neu">Misto</span></td><td>Regime específico monofásico; alíquota por unidade, regras próprias</td><td><span class="tk">PETR4 PRIO3 RECV3 VBBR3 UGPA3 CSAN3</span></td></tr>
+          <tr><td class="mono">Serviços financeiros</td><td><span class="chip att">Atenção</span></td><td>Regime específico; setor de serviços tende a ver carga maior por creditar poucos insumos</td><td><span class="tk">ITUB4 BBDC4 BBAS3 SANB11 BPAC11 B3SA3 BBSE3 PSSA3 ITSA4</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-h"><h2>Impactos econômicos (qualitativo)</h2><span class="meta">consenso, não auditado</span></div>
+      <div class="card-b">
+        <p><b style="color:var(--buy)">Indústria/exportação</b> tendem a ganhar — redução do "custo Brasil" via crédito de ativo fixo e desoneração de exportações.</p>
+        <p><b style="color:var(--sell)">Serviços</b> tendem a ter carga maior — hoje pagam ISS baixo (2–5%) com poucos insumos a creditar; daí o regime de redução de 30% para liberais.</p>
+        <p><b style="color:var(--gold)">Federativo</b> — a migração para o destino redistribui receita de estados produtores para consumidores, mitigada pelo Fundo de Desenvolvimento Regional e por transição longa de partilha.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>Reforma Tributária do Consumo · estudo explicativo · pesquisa multifonte com verificação adversarial</div>
+    <div class="src">
+      Fontes primárias:
+      <a href="https://www.planalto.gov.br/ccivil_03/leis/lcp/lcp214.htm">LC 214/2025 (Planalto)</a> ·
+      <a href="https://www.gov.br/fazenda/pt-br/acesso-a-informacao/acoes-e-programas/reforma-tributaria">Min. Fazenda</a> ·
+      <a href="https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/reforma-consumo/orientacoes-2026">Receita Federal — Orientações 2026</a> ·
+      <a href="https://www12.senado.leg.br/noticias/materias/2026/01/02/ano-de-2026-marca-implementacao-da-reforma-tributaria">Senado</a> ·
+      <a href="https://www.camara.leg.br/noticias/1237089-reforma-tributaria-comeca-fase-de-transicao-com-testes-de-novos-impostos-em-2026/">Câmara</a>
+    </div>
+    <div style="margin-top:8px">v1.0 · gerado 15/06/2026 · sem dependências externas (SVG inline) · números estimados marcados como tal</div>
+  </footer>
+
+</div>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active')});
+      document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active')});
+      t.classList.add('active');
+      document.getElementById(t.dataset.p).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>
